@@ -17,3 +17,7 @@ helm install hello-world ./hello-world
 [helm doc](https://helm.sh/docs/helm/helm/)
 
 docker build -t jamilnoyda/python-hello:latest .
+
+docker push jamilnoyda/python-hello:latest
+
+git push -u origin main

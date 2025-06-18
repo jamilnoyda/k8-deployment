@@ -1,13 +1,11 @@
 replicaCount: 1
 
 image:
-  repository: hashicorp/http-echo
-  tag: "0.2.3"
+  repository: jamilnoyda/python-hello
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
   port: 80
-
-args:
-  - "-text=Hello, World!"
+  targetPort: 5000

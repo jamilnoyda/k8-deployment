@@ -15,7 +15,8 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-        - name: hello-world
+        - name: python-hello
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: {{ .Values.args }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
