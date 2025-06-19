@@ -21,3 +21,7 @@ docker build -t jamilnoyda/python-hello:latest .
 docker push jamilnoyda/python-hello:latest
 
 git push -u origin main
+
+
+kubectl port-forward svc/hello-world-service 8080:80
+curl http://localhost:8080
