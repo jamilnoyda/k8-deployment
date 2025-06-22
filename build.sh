@@ -4,7 +4,7 @@
 set -e
 
 # Configuration
-REGISTRY=${REGISTRY:-"localhost:5000"}
+REGISTRY=${REGISTRY:-"jamilnoyda"}
 TAG=${TAG:-"latest"}
 
 echo "Building microservices images..."
@@ -26,3 +26,5 @@ cd ..
 echo "All images built and pushed successfully!"
 echo "Users Service: ${REGISTRY}/users-service:${TAG}"
 echo "Todos Service: ${REGISTRY}/todos-service:${TAG}"
+
+# chmod +x executable   
