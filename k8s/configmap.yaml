@@ -1,0 +1,10 @@
+# k8s/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservices-config
+  namespace: microservices
+data:
+  users_service_url: "http://users-service:80"
+  log_level: "INFO"
+  flask_env: "production"

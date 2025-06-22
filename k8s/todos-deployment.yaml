@@ -1,0 +1,54 @@
+# k8s/todos-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todos-service
+  namespace: microservices
+  labels:
+    app: todos-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todos-service
+  template:
+    metadata:
+      labels:
+        app: todos-service
+    spec:
+      containers:
+      - name: todos-service
+        image: todos-service:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5001
+          name: http
+        env:
+        - name: PORT
+          value: "5001"
+        - name: USERS_SERVICE_URL
+          value: "http://users-service:80"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5001
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+      restartPolicy: Always
